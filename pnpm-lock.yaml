@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@heroicons/react': ^1.0.6
   '@prisma/client': ^4.1.0
   '@trpc/client': ^9.26.2
   '@trpc/next': ^9.26.2
@@ -24,6 +25,7 @@ specifiers:
   zod: ^3.17.3
 
 dependencies:
+  '@heroicons/react': 1.0.6_react@18.2.0
   '@prisma/client': 4.1.0_prisma@4.1.0
   '@trpc/client': 9.26.2_@trpc+server@9.26.2
   '@trpc/next': 9.26.2_h3zgstsgkj4vide7rq3ntt2w3e
@@ -80,6 +82,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@heroicons/react/1.0.6_react@18.2.0:
+    resolution: {integrity: sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /@humanwhocodes/config-array/0.9.5:
     resolution: {integrity: sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw==}
