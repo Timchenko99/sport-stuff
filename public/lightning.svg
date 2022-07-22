@@ -1,10 +1,10 @@
 <svg width="338" height="523" viewBox="0 0 338 523" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d_255_2743)">
-<path d="M63 276L256 64L137 260L263 276L63 451.5L190.5 276H63Z" fill="#71C70F"/>
-<path d="M63 276L256 64L137 260L263 276L63 451.5L190.5 276H63Z" stroke="#71C70F"/>
+<path d="M63 276L256 64L126.5 260H263L63 451.5L190.5 276H63Z" fill="#71C70F"/>
+<path d="M63 276L256 64L126.5 260H263L63 451.5L190.5 276H63Z" stroke="#71C70F"/>
 </g>
 <defs>
-<filter id="filter0_d_255_2743" x="0.868652" y="0.663391" width="336.295" height="522.212" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d_255_2743" x="0.868652" y="0.663391" width="336.377" height="522.198" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dx="6" dy="4"/>
