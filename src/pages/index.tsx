@@ -19,8 +19,8 @@ const Home: NextPage = () => {
         <nav>
           <ul className="flex gap-5">
             <li><a href="#about" className="hover:text-white">About</a></li>
-            <li><a href="#Services" className="hover:text-white">Services</a></li>
-            <li><a href="#Contact Us" className="hover:text-white">Contact Us</a></li>
+            <li><a href="#services" className="hover:text-white">Services</a></li>
+            <li><a href="#contactus" className="hover:text-white">Contact Us</a></li>
             <li><a href="/signin" className="hover:text-white">Sign In</a></li>
           </ul>
         </nav>
@@ -33,7 +33,7 @@ const Home: NextPage = () => {
             Exercise as you wish.
           </h1>
           <p className="text-2xl text-gray-400 mb-16">Get access to our limitless knowledge base with over 150+ thousand workout programs created by professionals today!</p>
-          <Link href='/signup'><button className="shadow-md shadow-lime-400/50 hover:shadow-lg hover:shadow-lime-500/40 px-8 py-3 text-neutral-900 font-bold uppercase bg-gradient-to-tr from-lime-500 to-lime-400 hover:from-lime-600 hover:to-lime-700 rounded-md">get started</button></Link>
+          <Link href='/signup'><button className="shadow-md shadow-lime-400/50 hover:shadow-lg hover:shadow-lime-500/40 px-8 py-3 text-neutral-900 font-black uppercase bg-gradient-to-tr from-lime-500 to-lime-400 hover:from-lime-600 hover:to-lime-700 rounded-md">get started</button></Link>
           </div>
           <div className="relative">
 
