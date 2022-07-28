@@ -10,9 +10,44 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model User {
-    id String @id @default(cuid())
-    name String 
-    
+enum Role {
+    CREATOR
+    CONSUMER
+}
 
+enum ExerciseType {
+    CARDIO
+    HEAVY
+    LIGHT
+}
+
+model Exercise {
+    id           String       @id @default(cuid())
+    title        String
+    description  String
+    time         Int
+    exerciseType ExerciseType
+    course       Course?      @relation(fields: [courseId], references: [id])
+    courseId     String?
+}
+
+model Course {
+    id        String     @id @default(cuid())
+    owner     User       @relation(fields: [ownerId], references: [id])
+    ownerId   String
+    price     Int
+    exercises Exercise[]
+}
+
+model User {
+    id            String   @id @default(cuid())
+    name          String
+    age           Int
+    height        Float
+    weight        Float
+    role          Role
+    listedCourses Course[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
