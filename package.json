@@ -10,7 +10,6 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@heroicons/react": "^1.0.6",
     "@prisma/client": "^4.1.0",
     "@supabase/supabase-js": "^1.35.4",
     "@trpc/client": "^9.26.2",
@@ -21,6 +20,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.33.1",
+    "react-icons": "^4.4.0",
     "react-query": "3.39.2",
     "superjson": "^1.9.1",
     "zod": "^3.17.3"
