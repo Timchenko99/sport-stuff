@@ -102,9 +102,7 @@ const SignUp: NextPage = () => {
           <button className="w-full px-8 py-3 mb-6  text-neutral-900 font-black bg-neutral-300 hover:bg-neutral-500  rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300 flex items-center justify-center gap-2">
             <AiFillGithub width="200px" className="inline-block" /> GitHub
           </button>
-          <button className="w-full px-8 py-3 mb-6 text-neutral-400 font-black  border-[2px] border-neutral-900 rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300 flex items-center justify-center gap-2">
-            <AiOutlineLock className="w-7 inline-block" /> Email and Password
-          </button>
+
           <button className="w-full px-8 py-3 mb-6 text-neutral-400 font-black  border-[2px] border-neutral-900 rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300 flex items-center justify-center gap-2">
             <AiOutlineMail className="w-7 inline-block" /> Magic Link
           </button>
