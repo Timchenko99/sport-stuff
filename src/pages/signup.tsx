@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AiFillGithub, AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { SupabaseProvider, useAuth, useSession } from "../utils/supabase";
+import NavBar from "../components/NavBar";
 
 interface Inputs {
   email: string;
@@ -43,12 +44,13 @@ function SignUpForm() {
         {errors.email && <p className="text-red-600">Email is required</p>}
       </label>
 
-      <button className="w-full px-8 py-3 text-neutral-900 font-black  bg-lime-500 hover:bg-lime-600 rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300">
+      <button className="w-full px-8 py-3 mb-6 text-neutral-900 font-black  bg-lime-500 hover:bg-lime-600 rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300">
         Sign Up
       </button>
 
       <button className="w-full px-8 py-3 mb-6  text-neutral-900 font-black bg-neutral-300 hover:bg-neutral-500  rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300 flex items-center justify-center gap-2">
-        <AiFillGithub width="200px" className="inline-block" /> GitHub
+        <AiFillGithub width="200px" className="inline-block" />
+        <span>GitHub</span>
       </button>
     </form>
   );
@@ -66,30 +68,7 @@ function SignUp() {
   return (
     <IconContext.Provider value={{ size: "1.50rem" }}>
       <header>
-        <nav className="flex items-center justify-center text-gray-400 h-[72px] min-h-[72px]">
-          <ul className="flex gap-5">
-            <li>
-              <Link href="/#about">
-                <a className="hover:text-white">About</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/#services">
-                <a className="hover:text-white">Services</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/#contactus">
-                <a className="hover:text-white">Contact Us</a>
-              </Link>
-            </li>
-            <li>
-              <a href="/signin" className="hover:text-white">
-                Sign In
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <NavBar />
       </header>
       <main className="container mx-auto p-4 h-[calc(100vh-72px)] grid place-content-center text-lime-100 selection:bg-lime-300 selection:text-lime-900">
         <div className="flex flex-col items-center max-w-md text-center">
@@ -103,24 +82,21 @@ function SignUp() {
 
           <SignUpFormWrapper />
 
-        
-
-
           <p className="mb-4">
-            By signing up, you are agreeing to the{" "}
+            <span>By signing up, you are agreeing to the </span> 
             <Link href="/terms">
               <a className="underline text-lime-500">
                 Kochalka terms of service.
               </a>
             </Link>
-            View our
+            <span>View our </span>
             <Link href="/privacy">
               <a className="underline text-lime-500">privacy policy.</a>
             </Link>
           </p>
 
           <p>
-            Already registered?
+            <span>Already registered? </span>
             <Link href="/signin">
               <a className="underline text-lime-500">
                 Sign into existing account.

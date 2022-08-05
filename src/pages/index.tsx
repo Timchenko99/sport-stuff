@@ -1,11 +1,8 @@
-import type { NextPage } from "next";
 import Head from "next/head";
-import { trpc } from "../utils/trpc";
 import Link from "next/link";
+import NavBar from "../components/NavBar";
 
-const Home: NextPage = () => {
-  const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
-
+function Home() {
   return (
     <>
       <Head>
@@ -15,31 +12,7 @@ const Home: NextPage = () => {
       </Head>
 
       <header className="bg-gradient-to-tr from-[#0B0B0B] to-[#0A1201]">
-        {/* <img src="#" alt="logo" /> */}
-        <nav className="flex items-center justify-center text-gray-400 h-[72px] min-h-[72px]">
-          <ul className="flex gap-5">
-            <li>
-              <a href="#about" className="hover:text-white">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#services" className="hover:text-white">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="#contactus" className="hover:text-white">
-                Contact Us
-              </a>
-            </li>
-            <li>
-              <a href="/signin" className="hover:text-white">
-                Sign In
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <NavBar />
 
         <section className="container mx-auto h-[calc(100vh-72px)] p-4 flex lg:grid lg:grid-cols-2 lg:gap-20 lg:place-items-center selection:bg-lime-300 selection:text-lime-900">
           <div>
@@ -67,11 +40,9 @@ const Home: NextPage = () => {
         </section>
       </header>
 
-      <main className="container mx-auto flex flex-col items-center justify-center">
-        
-      </main>
+      <main className="container mx-auto flex flex-col items-center justify-center"></main>
     </>
   );
-};
+}
 
 export default Home;
