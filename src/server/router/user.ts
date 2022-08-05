@@ -16,6 +16,6 @@ export const userRouter = createRouter()
   })
   .query("me", {
     async resolve({ ctx }) {
-      return await ctx.prisma.user.findMany();
+      return ctx.session?.user;
     },
   });
