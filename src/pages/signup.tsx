@@ -1,28 +1,68 @@
-import type { NextPage } from "next";
 import { useForm } from "react-hook-form";
-import type { SubmitHandler } from "react-hook-form";
-import { useCallback } from "react";
 import Link from "next/link";
 
 import { AiFillGithub, AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { IconContext } from "react-icons";
+import { SupabaseProvider, useAuth, useSession } from "../utils/supabase";
 
 interface Inputs {
   email: string;
-  password: string;
 }
 
-const SignUp: NextPage = () => {
+function SignUpForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit = useCallback<SubmitHandler<Inputs>>(
-    (data) => console.log(data),
-    []
-  );
 
+  const auth = useAuth();
+
+  async function onSubmit(data: Inputs) {
+    try {
+      const { error } = await auth.signUp({ ...data });
+      if (error) throw error;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full mb-6">
+      <label htmlFor="email" className="block mb-6 text-start">
+        <span className="block font-medium text-sm mb-3">Email</span>
+        <input
+          id="email"
+          type="text"
+          placeholder="Input text"
+          {...register("email", { required: true })}
+          autoComplete="email"
+          className="w-full bg-transparent border rounded-md px-5 py-4 invalid:border-red-500 invalid:text-red-600
+          focus:invalid:border-red-500 focus:invalid:ring-red-500 caret-lime-400 placeholder:italic placeholder:text-slate-400"
+        />
+        {errors.email && <p className="text-red-600">Email is required</p>}
+      </label>
+
+      <button className="w-full px-8 py-3 text-neutral-900 font-black  bg-lime-500 hover:bg-lime-600 rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300">
+        Sign Up
+      </button>
+
+      <button className="w-full px-8 py-3 mb-6  text-neutral-900 font-black bg-neutral-300 hover:bg-neutral-500  rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300 flex items-center justify-center gap-2">
+        <AiFillGithub width="200px" className="inline-block" /> GitHub
+      </button>
+    </form>
+  );
+}
+
+function SignUpFormWrapper() {
+  return (
+    <SupabaseProvider>
+      <SignUpForm />
+    </SupabaseProvider>
+  );
+}
+
+function SignUp() {
   return (
     <IconContext.Provider value={{ size: "1.50rem" }}>
       <header>
@@ -61,52 +101,9 @@ const SignUp: NextPage = () => {
             Trusted by many big companies all around the globe.
           </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="w-full mb-6 hidden">
-            <label htmlFor="email" className="block mb-6 text-start">
-              <span className="block font-medium text-sm mb-3">Email</span>
-              <input
-                id="email"
-                type="text"
-                placeholder="Input text"
-                {...register("email", { required: true })}
-                autoComplete="email"
-                className="w-full bg-transparent border rounded-md px-5 py-4 invalid:border-red-500 invalid:text-red-600
-          focus:invalid:border-red-500 focus:invalid:ring-red-500 caret-lime-400 placeholder:italic placeholder:text-slate-400"
-              />
-              {errors.email && (
-                <p className="text-red-600">Email is required</p>
-              )}
-            </label>
+          <SignUpFormWrapper />
 
-            <label htmlFor="new-password" className="block mb-10 text-start">
-              <span className="block font-medium text-sm mb-3">Password</span>
-              <input
-                id="new-password"
-                type="password"
-                placeholder="Input text"
-                {...register("password", { required: true })}
-                autoComplete="new-password"
-                className="w-full bg-transparent border rounded-md px-5 py-4 invalid:border-red-500 invalid:text-red-600
-          focus:invalid:border-red-500 focus:invalid:ring-red-500 caret-lime-400 placeholder:italic placeholder:text-slate-400"
-              />
-              {errors.password && (
-                <p className="text-red-600">Password is required</p>
-              )}
-            </label>
-
-            <button className="w-full px-8 py-3 text-neutral-900 font-black  bg-lime-500 hover:bg-lime-600 rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300">
-              Sign Up
-            </button>
-          </form>
-          {/* <hr className="mb-6 w-full border-neutral-500/20" /> */}
-          <button className="w-full px-8 py-3 mb-6  text-neutral-900 font-black bg-neutral-300 hover:bg-neutral-500  rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300 flex items-center justify-center gap-2">
-            <AiFillGithub width="200px" className="inline-block" /> GitHub
-          </button>
-
-          <button className="w-full px-8 py-3 mb-6 text-neutral-400 font-black  border-[2px] border-neutral-900 rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300 flex items-center justify-center gap-2">
-            <AiOutlineMail className="w-7 inline-block" /> Magic Link
-          </button>
-
+        
 
 
           <p className="mb-4">
@@ -115,15 +112,15 @@ const SignUp: NextPage = () => {
               <a className="underline text-lime-500">
                 Kochalka terms of service.
               </a>
-            </Link>{" "}
-            View our{" "}
+            </Link>
+            View our
             <Link href="/privacy">
               <a className="underline text-lime-500">privacy policy.</a>
             </Link>
           </p>
 
           <p>
-            Already registered?{" "}
+            Already registered?
             <Link href="/signin">
               <a className="underline text-lime-500">
                 Sign into existing account.
