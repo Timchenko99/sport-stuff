@@ -7,7 +7,7 @@ function Home() {
   return (
     <>
       <Head>
-        <title>Kochalka</title>
+        <title>Sport-Stuff</title>
         <meta name="description" content="Exercise platform" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
