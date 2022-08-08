@@ -8,12 +8,12 @@ export const courseRouter = createRouter()
         ownerId: z.string(),
         
       }),
-    async resolve({ input }) {
-      return await ctx.prisma.course.create()
+    async resolve({ ctx, input }) {
+      //return await ctx.prisma.course.create()
     },
   })
   .query("getAll", {
     async resolve({ ctx }) {
-      return await ctx.prisma.course.findMany();
+      //return await ctx.prisma.course.findMany();
     },
   });
