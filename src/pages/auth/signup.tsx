@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import { AiFillGithub, AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { IconContext } from "react-icons";
-import { SupabaseProvider, useAuth, useSession } from "../utils/supabase";
-import NavBar from "../components/NavBar";
+import NavBar from "../../components/NavBar";
+import { signIn } from "next-auth/react";
 
 interface Inputs {
   email: string;
@@ -17,19 +17,8 @@ function SignUpForm() {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const auth = useAuth();
-
-  async function onSubmit(data: Inputs) {
-    try {
-      const { error } = await auth.signUp({ ...data });
-      if (error) throw error;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full mb-6">
+    <form onSubmit={handleSubmit(() => signIn('twitch'))} className="w-full mb-6">
       <label htmlFor="email" className="block mb-6 text-start">
         <span className="block font-medium text-sm mb-3">Email</span>
         <input
@@ -58,9 +47,7 @@ function SignUpForm() {
 
 function SignUpFormWrapper() {
   return (
-    <SupabaseProvider>
       <SignUpForm />
-    </SupabaseProvider>
   );
 }
 
