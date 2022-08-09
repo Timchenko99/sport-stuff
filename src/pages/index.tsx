@@ -24,9 +24,12 @@ function Home() {
               Get access to our limitless knowledge base with over 150+ thousand
               workout programs created by professionals today!
             </p>
-              <button onClick={ () => signIn() } className="shadow-md shadow-lime-400/50 hover:shadow-lg hover:shadow-lime-500/40 px-8 py-3 text-neutral-900 font-black uppercase bg-gradient-to-tr from-lime-500 to-lime-400 hover:from-lime-600 hover:to-lime-600 active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300  rounded-md">
-                get started
-              </button>
+            <button
+              onClick={() => signIn()}
+              className="shadow-md shadow-lime-400/50 hover:shadow-lg hover:shadow-lime-500/40 px-8 py-3 text-neutral-900 font-black uppercase bg-gradient-to-tr from-lime-500 to-lime-400 hover:from-lime-600 hover:to-lime-600 active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300  rounded-md"
+            >
+              get started
+            </button>
           </div>
           <div className="relative">
             <img
