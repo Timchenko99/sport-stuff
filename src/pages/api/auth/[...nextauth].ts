@@ -22,10 +22,10 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
+  },
+  pages: {
+    signIn: '/auth/signin'
   }
-  // pages: {
-  //   signIn: 'auth/signup'
-  // }
 };
 
 export default NextAuth(authOptions);
