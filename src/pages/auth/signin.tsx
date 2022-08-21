@@ -10,9 +10,13 @@ import type { BuiltInProviderType } from "next-auth/providers";
 
 import { getServerSideSession } from "../../server/common/get-session";
 import { GetServerSidePropsContext } from "next";
+import { Role } from "@prisma/client";
+
+
 
 interface Inputs {
   email: string;
+  role: Role
 }
 
 function SignInForm() {
@@ -41,83 +45,82 @@ function SignInForm() {
         {errors.email && <p className="text-red-600">Email is required</p>}
       </label>
 
-      <button className="w-full px-8 py-3 mb-6 text-neutral-900 font-black  bg-lime-500 hover:bg-lime-600 rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300">
+      <button className="w-full px-8 py-3 text-neutral-900 font-black  bg-lime-500 hover:bg-lime-600 rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300">
         Sign In
       </button>
-
-
     </form>
   );
 }
 
-function SignInProvider({provider}: {provider: ClientSafeProvider}){
-  if(provider.name === "GitHub"){
-    return ( <button
+function SignInProvider({ provider }: { provider: ClientSafeProvider }) {
+  if (provider.name === "GitHub") {
+    return (
+      <button
+        onClick={() => signIn(provider.id)}
+        className="w-full px-8 py-3 mb-6  text-neutral-900 font-black bg-neutral-300 hover:bg-neutral-500  rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300 flex items-center justify-center gap-2"
+      >
+        <AiFillGithub width="200px" className="inline-block" />
+        <span>Sign in with {provider.name}</span>
+      </button>
+    );
+  }
+
+  return (
+    <button
       onClick={() => signIn(provider.id)}
       className="w-full px-8 py-3 mb-6  text-neutral-900 font-black bg-neutral-300 hover:bg-neutral-500  rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300 flex items-center justify-center gap-2"
     >
-      <AiFillGithub width="200px" className="inline-block" />
-      <span>Sign in with {provider.name}</span>
-    </button>)
-  }
-
-  return (          <button
-    onClick={() => signIn(provider.id)}
-    className="w-full px-8 py-3 mb-6  text-neutral-900 font-black bg-neutral-300 hover:bg-neutral-500  rounded-md active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300 flex items-center justify-center gap-2"
-  >
-    Sign in with {provider.name}
-  </button>)
+      Sign in with {provider.name}
+    </button>
+  );
 }
 
-function ListOfProviders({providers}:
-  {providers: Record<
+function ListOfProviders({
+  providers,
+}: {
+  providers: Record<
     LiteralUnion<BuiltInProviderType, string>,
     ClientSafeProvider
-  >}
-) {
-
-
-
+  >;
+}) {
   return (
     <>
       {Object.values(providers).map((provider) => (
         <div key={provider.name} className="w-full">
-          <SignInProvider provider={provider}/>
+          <SignInProvider provider={provider} />
         </div>
       ))}
     </>
   );
 }
 
-function LegalInfo(){
+function LegalInfo() {
   return (
     <>
       <p className="mb-4">
-            <span>By signing In, you are agreeing to the </span>
-            <Link href="/terms">
-              <a className="underline text-lime-500">
-                Kochalka terms of service.
-              </a>
-            </Link>
-            <span>View our </span>
-            <Link href="/privacy">
-              <a className="underline text-lime-500">privacy policy.</a>
-            </Link>
-          </p>
+        <span>By signing In, you are agreeing to the </span>
+        <Link href="/terms">
+          <a className="underline text-lime-500">Kochalka terms of service.</a>
+        </Link>
+        <span>View our </span>
+        <Link href="/privacy">
+          <a className="underline text-lime-500">privacy policy.</a>
+        </Link>
+      </p>
 
-          <p>
-            <span>Already registered? </span>
-            <Link href="/signin">
-              <a className="underline text-lime-500">
-                Sign into existing account.
-              </a>
-            </Link>
-          </p>
+      <p>
+        <span>Already registered? </span>
+        <Link href="/signin">
+          <a className="underline text-lime-500">Sign into existing account.</a>
+        </Link>
+      </p>
     </>
-  )
+  );
 }
 
-function SignIn({providers}:{
+function SignIn({
+  providers,
+}: {
   providers: Record<
     LiteralUnion<BuiltInProviderType, string>,
     ClientSafeProvider
@@ -135,13 +138,12 @@ function SignIn({providers}:{
           </h1>
 
           <p className="mb-8">
-            Trusted by many big companies all around the globe.
+            Trusted by couple dudes and a half.
           </p>
 
           <SignInForm />
-          <ListOfProviders providers={providers}/>
+          <ListOfProviders providers={providers} />
           <LegalInfo />
-          
         </div>
       </main>
     </IconContext.Provider>
