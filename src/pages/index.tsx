@@ -1,6 +1,5 @@
 import { signIn } from "next-auth/react";
 import Head from "next/head";
-import Link from "next/link";
 import NavBar from "../components/NavBar";
 
 function Home() {
@@ -26,7 +25,7 @@ function Home() {
             </p>
             <button
               onClick={() => signIn()}
-              className="shadow-md shadow-lime-400/50 hover:shadow-lg hover:shadow-lime-500/40 px-8 py-3 text-neutral-900 font-black uppercase bg-gradient-to-tr from-lime-500 to-lime-400 hover:from-lime-600 hover:to-lime-600 active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-300  rounded-md"
+              className="px-8 py-3 text-neutral-900 font-black uppercase bg-lime-400 hover:bg-lime-200 [&:focus-visible]:bg-lime-200 active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-700  rounded-md"
             >
               get started
             </button>
