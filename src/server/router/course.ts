@@ -1,19 +1,17 @@
-import { createRouter } from "./context";
-import { z } from "zod";
+import { createRouter } from './context'
+import { z } from 'zod'
 
 export const courseRouter = createRouter()
-  .mutation("create-course", {
-    input: z
-      .object({
-        ownerId: z.string(),
-        
-      }),
+  .mutation('create-course', {
+    input: z.object({
+      ownerId: z.string(),
+    }),
     async resolve({ ctx, input }) {
       //return await ctx.prisma.course.create()
     },
   })
-  .query("getAll", {
+  .query('getAll', {
     async resolve({ ctx }) {
       //return await ctx.prisma.course.findMany();
     },
-  });
+  })

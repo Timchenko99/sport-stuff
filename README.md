@@ -2,7 +2,7 @@
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack. (don't show this to Theo)
 
-# Motivation 
+# Motivation
 
 - Try out t3 stack
 - Try out Next-Auth + WebSockets way

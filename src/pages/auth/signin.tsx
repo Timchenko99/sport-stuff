@@ -1,22 +1,18 @@
-import { useForm } from "react-hook-form";
-import Link from "next/link";
+import { useForm } from 'react-hook-form'
+import Link from 'next/link'
 
-import { AiFillGithub, AiOutlineMail, AiOutlineLock } from "react-icons/ai";
-import { IconContext } from "react-icons";
-import NavBar from "../../components/NavBar";
-import { getProviders, signIn } from "next-auth/react";
-import type { LiteralUnion, ClientSafeProvider } from "next-auth/react";
-import type { BuiltInProviderType } from "next-auth/providers";
+import { AiFillGithub, AiOutlineMail, AiOutlineLock } from 'react-icons/ai'
+import { IconContext } from 'react-icons'
+import NavBar from '../../components/NavBar'
+import { getProviders, signIn } from 'next-auth/react'
+import type { LiteralUnion, ClientSafeProvider } from 'next-auth/react'
+import type { BuiltInProviderType } from 'next-auth/providers'
 
-import { getServerSideSession } from "../../server/common/get-session";
-import { GetServerSidePropsContext } from "next";
-import { Role } from "@prisma/client";
-
-
+import { getServerSideSession } from '../../server/common/get-session'
+import { GetServerSidePropsContext } from 'next'
 
 interface Inputs {
-  email: string;
-  role: Role
+  email: string
 }
 
 function SignInForm() {
@@ -24,11 +20,11 @@ function SignInForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>()
 
   return (
     <form
-      onSubmit={handleSubmit(() => signIn("twitch"))}
+      onSubmit={handleSubmit(() => signIn('twitch'))}
       className="w-full mb-6"
     >
       <label htmlFor="email" className="block mb-6 text-start">
@@ -37,7 +33,7 @@ function SignInForm() {
           id="email"
           type="text"
           placeholder="Input text"
-          {...register("email", { required: true })}
+          {...register('email', { required: true })}
           autoComplete="email"
           className="w-full bg-transparent border rounded-md px-5 py-4 invalid:border-red-500 invalid:text-red-600
           focus:invalid:border-red-500 focus:invalid:ring-red-500 caret-lime-400 placeholder:italic placeholder:text-slate-400"
@@ -49,11 +45,11 @@ function SignInForm() {
         Sign In
       </button>
     </form>
-  );
+  )
 }
 
 function SignInProvider({ provider }: { provider: ClientSafeProvider }) {
-  if (provider.name === "GitHub") {
+  if (provider.name === 'GitHub') {
     return (
       <button
         onClick={() => signIn(provider.id)}
@@ -62,7 +58,7 @@ function SignInProvider({ provider }: { provider: ClientSafeProvider }) {
         <AiFillGithub width="200px" className="inline-block" />
         <span>Sign in with {provider.name}</span>
       </button>
-    );
+    )
   }
 
   return (
@@ -72,7 +68,7 @@ function SignInProvider({ provider }: { provider: ClientSafeProvider }) {
     >
       Sign in with {provider.name}
     </button>
-  );
+  )
 }
 
 function ListOfProviders({
@@ -81,7 +77,7 @@ function ListOfProviders({
   providers: Record<
     LiteralUnion<BuiltInProviderType, string>,
     ClientSafeProvider
-  >;
+  >
 }) {
   return (
     <>
@@ -91,7 +87,7 @@ function ListOfProviders({
         </div>
       ))}
     </>
-  );
+  )
 }
 
 function LegalInfo() {
@@ -115,7 +111,7 @@ function LegalInfo() {
         </Link>
       </p>
     </>
-  );
+  )
 }
 
 function SignIn({
@@ -124,10 +120,10 @@ function SignIn({
   providers: Record<
     LiteralUnion<BuiltInProviderType, string>,
     ClientSafeProvider
-  >;
+  >
 }) {
   return (
-    <IconContext.Provider value={{ size: "1.50rem" }}>
+    <IconContext.Provider value={{ size: '1.50rem' }}>
       <header>
         <NavBar />
       </header>
@@ -137,9 +133,7 @@ function SignIn({
             Sign In for your free account.
           </h1>
 
-          <p className="mb-8">
-            Trusted by couple dudes and a half.
-          </p>
+          <p className="mb-8">Trusted by couple dudes and a half.</p>
 
           <SignInForm />
           <ListOfProviders providers={providers} />
@@ -147,21 +141,21 @@ function SignIn({
         </div>
       </main>
     </IconContext.Provider>
-  );
+  )
 }
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  const { req, res } = ctx;
+  const { req, res } = ctx
 
-  const session = await getServerSideSession(ctx);
-  const providers = await getProviders();
+  const session = await getServerSideSession(ctx)
+  const providers = await getProviders()
 
   if (session && res) {
     res.writeHead(302, {
-      Location: "/",
-    });
-    res.end();
-    return;
+      Location: '/',
+    })
+    res.end()
+    return
   }
 
   return {
@@ -169,7 +163,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
       session: null,
       providers,
     }, // will be passed to the page component as props
-  };
+  }
 }
 
-export default SignIn;
+export default SignIn

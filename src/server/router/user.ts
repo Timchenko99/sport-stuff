@@ -1,8 +1,8 @@
-import { createRouter } from "./context";
-import { z } from "zod";
+import { createRouter } from './context'
+import { z } from 'zod'
 
 export const userRouter = createRouter()
-  .mutation("register-user", {
+  .mutation('register-user', {
     input: z
       .object({
         text: z.string().nullish(),
@@ -10,12 +10,12 @@ export const userRouter = createRouter()
       .nullish(),
     resolve({ input }) {
       return {
-        greeting: `Hello ${input?.text ?? "world"}`,
-      };
+        greeting: `Hello ${input?.text ?? 'world'}`,
+      }
     },
   })
-  .query("me", {
+  .query('me', {
     async resolve({ ctx }) {
-      return 
+      return
     },
-  });
+  })

@@ -1,10 +1,10 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
+import NextAuth, { NextAuthOptions } from 'next-auth'
+import GithubProvider from 'next-auth/providers/github'
 
 // Prisma adapter for NextAuth, optional and can be removed
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "../../../server/db/client";
-import { env } from "../../../server/env.mjs";
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import { prisma } from '../../../server/db/client'
+import { env } from '../../../server/env.mjs'
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
@@ -18,14 +18,14 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     session({ session, user }) {
       if (session.user) {
-        session.user.id = user.id;
+        session.user.id = user.id
       }
-      return session;
+      return session
     },
   },
   pages: {
-    signIn: '/auth/signin'
-  }
-};
+    signIn: '/auth/signin',
+  },
+}
 
-export default NextAuth(authOptions);
+export default NextAuth(authOptions)
