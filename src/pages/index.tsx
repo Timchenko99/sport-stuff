@@ -1,6 +1,9 @@
-import { signIn } from "next-auth/react";
-import Head from "next/head";
-import NavBar from "../components/NavBar";
+import { signIn } from 'next-auth/react'
+import Head from 'next/head'
+
+import Image from 'next/image'
+
+import NavBar from '../components/NavBar'
 
 function Home() {
   return (
@@ -10,40 +13,44 @@ function Home() {
         <meta name="description" content="Exercise platform" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/** bg-gradient-to-tr from-[#0B0B0B] to-[#0A1201]*/}
 
-      <header className="bg-gradient-to-tr from-[#0B0B0B] to-[#0A1201]">
+      <header className="sticky top-0">
         <NavBar />
-
-        <section className="container mx-auto h-[calc(100vh-72px)] p-4 flex lg:grid lg:grid-cols-2 lg:gap-20 lg:place-items-center selection:bg-lime-300 selection:text-lime-900">
-          <div>
-            <h1 className="text-6xl md:text-[5rem] font-extrabold text-lime-100 mb-5 leading-[77px]">
-              Exercise as you wish.
-            </h1>
-            <p className="text-2xl text-gray-400 mb-16">
-              Get access to our limitless knowledge base with over 150+ thousand
-              workout programs created by professionals today!
-            </p>
-            <button
-              onClick={() => signIn()}
-              className="px-8 py-3 text-neutral-900 font-black uppercase bg-lime-400 hover:bg-lime-200 [&:focus-visible]:bg-lime-200 active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-700  rounded-md"
-            >
-              get started
-            </button>
-          </div>
-          <div className="relative">
-            <img
-              src="./lightning.svg"
-              alt="green lightning icon"
-              className="hidden absolute top-0 left-[3.25rem] lg:block z-10"
-            />
-            <img src="./lightning-bg.svg" alt="" className=" hidden lg:block" />
-          </div>
-        </section>
       </header>
 
-      <main className="container mx-auto flex flex-col items-center justify-center"></main>
+      <div className="container mx-auto">
+        <main>
+          <div className="mt-10 px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+            <div className="text-center sm:text-left">
+              <div className="sm:flex sm:items-center sm:justify-center">
+                <div>
+                  <h1 className="text-4xl lg:text-7xl tracking-tight font-bold text-lime-100 sm:text-5xl sm:tracking-tight sm:max-w-xl md:text-6xl md:tracking-tight">
+                    Exercise as you wish.
+                  </h1>
+                  <p className="text-base sm:text-lg md:text-xl text-gray-400 mt-3 sm:mt-5 sm:max-w-lg sm:mx-auto md:mt-5 lg:mx-0">
+                    Get access to our limitless knowledge base with over 150+
+                    thousand workout programs created by professionals today!
+                  </p>
+                  <button
+                    onClick={() => signIn()}
+                    className="w-full sm:w-auto text-base sm:text-lg px-8 py-3 text-neutral-900 mt-7 md:mt-16  font-black uppercase bg-lime-400 hover:bg-lime-200 [&:focus-visible]:bg-lime-200 active:bg-lime-700 focus:outline-none focus:ring focus:ring-lime-700  rounded-md"
+                  >
+                    get started
+                  </button>
+                </div>
+                <div className="mt-10 sm:mt-auto">
+                  <Image src="/lightning.svg" alt="" width="436" height="536" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer></footer>
+      </div>
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home
