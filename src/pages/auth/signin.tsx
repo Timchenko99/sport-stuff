@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 
-import { AiFillGithub, AiOutlineMail, AiOutlineLock } from 'react-icons/ai'
+import { AiFillGithub } from 'react-icons/ai'
 import { IconContext } from 'react-icons'
 import NavBar from '../../components/NavBar'
 import { getProviders, signIn } from 'next-auth/react'

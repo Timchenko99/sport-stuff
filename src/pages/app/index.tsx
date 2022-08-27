@@ -1,11 +1,11 @@
-import { GetServerSidePropsContext } from "next";
-import { useRef } from "react";
-import { getServerSideSession } from "../../server/common/get-session";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { GetServerSidePropsContext } from 'next'
+import { useRef } from 'react'
+import { getServerSideSession } from '../../server/common/get-session'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 interface CardTypes {
-  title: string;
-  description: string;
+  title: string
+  description: string
 }
 
 function OptionCard({ title, description }: CardTypes) {
@@ -19,18 +19,18 @@ function OptionCard({ title, description }: CardTypes) {
         </a>
       </div>
     </>
-  );
+  )
 }
 
 function Cards() {
   const cards = useRef([
     {
-      title: "Dashboard",
-      description: "All the neccesary information you need at your fingertips.",
+      title: 'Dashboard',
+      description: 'All the neccesary information you need at your fingertips.',
     },
-    { title: "Settings", description: "Description." },
-  ]);
-  const [parent] = useAutoAnimate<HTMLDivElement>(/* optional config */);
+    { title: 'Settings', description: 'Description.' },
+  ])
+  const [parent] = useAutoAnimate<HTMLDivElement>(/* optional config */)
 
   return (
     <>
@@ -40,17 +40,17 @@ function Cards() {
         ref={parent}
       >
         {cards.current.map((card) => {
-          return <OptionCard key={`card-${card.title}`} {...card} />;
+          return <OptionCard key={`card-${card.title}`} {...card} />
         })}
       </div>
     </>
-  );
+  )
 }
 
 function Index() {
   return (
     <>
-      <div className="  text-lime-100 grid grid-cols-[minmax(222px,_auto)_1fr] min-h-screen selection:bg-lime-300 selection:text-lime-900">
+      <div className="overflow-hidden text-gray-100 grid grid-cols-[minmax(222px,_auto)_1fr] min-h-screen selection:bg-lime-300 selection:text-lime-900">
         <div className="border-r p-10 border-[#222222]">
           <nav className="flex flex-col justify-between h-full">
             <ul>
@@ -89,8 +89,10 @@ function Index() {
         </div>
       </div>
     </>
-  );
+  )
 }
+
+//*** Check if user is authenticated ***
 
 // export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 //   const { req, res } = ctx;
@@ -114,4 +116,4 @@ function Index() {
 //   };
 // }
 
-export default Index;
+export default Index
